@@ -1,5 +1,5 @@
-/* C utility functions - Version 1.0.0
-   Copyright (c) 2022 Samuel Lourenço
+/* C utility functions - Version 1.1.0
+   Copyright (c) 2022-2024 Samuel Lourenço
 
    This library is free software: you can redistribute it and/or modify it
    under the terms of the GNU Lesser General Public License as published by
@@ -63,4 +63,17 @@ bool is_number(char *value)
         }
     }
     return retval;
+}
+
+// Reverses the bit order of a given byte
+void reverse_byte(uint8_t *value) {
+    *value = (uint8_t)((0xf0 & *value) >> 4 | (0x0f & *value) << 4);
+    *value = (uint8_t)((0xcc & *value) >> 2 | (0x33 & *value) << 2);
+    *value = (uint8_t)((0xaa & *value) >> 1 | (0x55 & *value) << 1);
+}
+
+// Returns a byte having the bit order reversed in relation to a given byte
+uint8_t reversed_byte(uint8_t value) {
+    reverse_byte(&value);
+    return value;
 }
