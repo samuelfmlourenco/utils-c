@@ -1,5 +1,5 @@
-/* C utility functions - Version 1.0.0
-   Copyright (c) 2022 Samuel Lourenço
+/* C utility functions - Version 1.1.0
+   Copyright (c) 2022-2024 Samuel Lourenço
 
    This library is free software: you can redistribute it and/or modify it
    under the terms of the GNU Lesser General Public License as published by
@@ -23,9 +23,18 @@
 
 // Includes
 #include <stdbool.h>
+#include <stdint.h>
 
 // Function prototypes
 bool is_integer(char *value);
 bool is_number(char *value);
+void reverse_byte(uint8_t *value);
+void reverse_dword(uint32_t *value);
+void reverse_qword(uint64_t *value);
+void reverse_word(uint16_t *value);
+uint8_t reversed_byte(uint8_t value);
+uint32_t reversed_dword(uint32_t value);
+uint64_t reversed_qword(uint64_t value);
+uint16_t reversed_word(uint16_t value);
 
 #endif  // UTILS_H_
