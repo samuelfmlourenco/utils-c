@@ -81,6 +81,16 @@ void reverse_dword(uint32_t *value) {
     *value = (uint32_t)((0xaaaaaaaa & *value) >> 1 | (0x55555555 & *value) << 1);
 }
 
+// Reverses the bit order of a given qword
+void reverse_qword(uint64_t *value) {
+    *value = (uint64_t)((0xffffffff00000000 & *value) >> 32 | (0x00000000ffffffff & *value) << 32);
+    *value = (uint64_t)((0xffff0000ffff0000 & *value) >> 16 | (0x0000ffff0000ffff & *value) << 16);
+    *value = (uint64_t)((0xff00ff00ff00ff00 & *value) >> 8 | (0x00ff00ff00ff00ff & *value) << 8);
+    *value = (uint64_t)((0xf0f0f0f0f0f0f0f0 & *value) >> 4 | (0x0f0f0f0f0f0f0f0f & *value) << 4);
+    *value = (uint64_t)((0xcccccccccccccccc & *value) >> 2 | (0x3333333333333333 & *value) << 2);
+    *value = (uint64_t)((0xaaaaaaaaaaaaaaaa & *value) >> 1 | (0x5555555555555555 & *value) << 1);
+}
+
 // Reverses the bit order of a given word
 void reverse_word(uint16_t *value) {
     *value = (uint16_t)((0xff00 & *value) >> 8 | (0x00ff & *value) << 8);
@@ -98,6 +108,12 @@ uint8_t reversed_byte(uint8_t value) {
 // Returns a dword having the bit order reversed in relation to a given dword
 uint32_t reversed_dword(uint32_t value) {
     reverse_dword(&value);
+    return value;
+}
+
+// Returns a qword having the bit order reversed in relation to a given qword
+uint64_t reversed_qword(uint64_t value) {
+    reverse_qword(&value);
     return value;
 }
 
