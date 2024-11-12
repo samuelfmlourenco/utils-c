@@ -72,6 +72,15 @@ void reverse_byte(uint8_t *value) {
     *value = (uint8_t)((0xaa & *value) >> 1 | (0x55 & *value) << 1);
 }
 
+// Reverses the bit order of a given dword
+void reverse_dword(uint32_t *value) {
+    *value = (uint32_t)((0xffff0000 & *value) >> 16 | (0x0000ffff & *value) << 16);
+    *value = (uint32_t)((0xff00ff00 & *value) >> 8 | (0x00ff00ff & *value) << 8);
+    *value = (uint32_t)((0xf0f0f0f0 & *value) >> 4 | (0x0f0f0f0f & *value) << 4);
+    *value = (uint32_t)((0xcccccccc & *value) >> 2 | (0x33333333 & *value) << 2);
+    *value = (uint32_t)((0xaaaaaaaa & *value) >> 1 | (0x55555555 & *value) << 1);
+}
+
 // Reverses the bit order of a given word
 void reverse_word(uint16_t *value) {
     *value = (uint16_t)((0xff00 & *value) >> 8 | (0x00ff & *value) << 8);
@@ -83,6 +92,12 @@ void reverse_word(uint16_t *value) {
 // Returns a byte having the bit order reversed in relation to a given byte
 uint8_t reversed_byte(uint8_t value) {
     reverse_byte(&value);
+    return value;
+}
+
+// Returns a dword having the bit order reversed in relation to a given dword
+uint32_t reversed_dword(uint32_t value) {
+    reverse_dword(&value);
     return value;
 }
 
